@@ -57,8 +57,8 @@ const query = builder.build();
 // o=GreaterThan&p=age&v=25&o=StartsWith&p=name&v=Y&offset=0&count=10&s=name,desc
 
 // Give me 10 users sorted by name descending from offset 0
-// who's age is greater than 25 AND
-// who's names starts with Y
+// whose age is greater than 25 AND
+// whose names starts with Y
 ```
 
 ## Filters
