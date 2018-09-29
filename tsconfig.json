@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "declaration": true,
+    "noImplicitAny": false,
+    "allowSyntheticDefaultImports": false,
+    "pretty": true,
+    "removeComments": true,
+    "lib": ["es6", "esnext.asynciterable"],
+    "typeRoots": ["node_modules/@types"],
+    "types": ["@types/node"],
+    "rootDir": "./src",
+    "outDir": "./lib"
+  },
+  "exclude": [
+    "node_modules",
+    "lib"
+  ]
+}
