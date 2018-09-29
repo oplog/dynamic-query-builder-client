@@ -153,7 +153,7 @@ Sorting can be done by creating `SortField` instance;
 ```ts
 const field = new SortField({
     property: "age",
-    by: SortDirection.Descending
+    by: SortDirection.DESC
 });
 // The default by parameter is Ascending
 ```
