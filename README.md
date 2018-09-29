@@ -1,5 +1,9 @@
 # Dynamic Query Builder Client
 
+[![CircleCI](https://circleci.com/gh/emrekeskinmac/dynamic-query-builder-client/tree/feature%2Funit-tests.svg?style=svg)](https://circleci.com/gh/emrekeskinmac/dynamic-query-builder-client/tree/feature%2Funit-tests)
+
+![istanbul coverange](https://img.shields.io/badge/code%20coverange-93.04-green.svg)
+
 Dynamic query builder is able to build http query string for `filtering`, `sorting`, `pagination` operations. It works with [DynamicQueryBuilder](https://oplog.visualstudio.com/RnD/Omni%20Code/_git/OmniServices?path=%2Fsrc%2Fbackend%2FDynamicQueryBuilder%2FREADME.md&version=GBmaster&_a=preview) library.
 
 #### NOTE: QueryBuilder is not able to perform http requests. It is only responsible to build query string.
