@@ -4,7 +4,7 @@
   "description": "Typescript client for Dynamic Query Builder",
   "main": "index.js",
   "scripts": {
-    "build": "rimraf ./lib && tsc && ncp ./src/client/proto/ ./lib/client/proto/",
+    "build": "rimraf ./lib && tsc",
     "dev": "nodemon --watch src -e ts --exec 'npm run test'",
     "prepublish": "npm run test && npm run build",
     "pretest": "tsc",
