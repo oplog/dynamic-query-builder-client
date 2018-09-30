@@ -12,7 +12,7 @@ test('build query with sorting filter', function(t) {
 });
 
 
-test('build query with numeric filter for every operations', function(t) {
+test('build query with sorting filter for every operations', function(t) {
   const operations = Object.keys(SortDirection);
   operations.pop();
   t.plan(operations.length);

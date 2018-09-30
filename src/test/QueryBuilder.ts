@@ -17,7 +17,7 @@ test('build query with no filters', function(t) {
   t.equal(builder.build(), '');
 });
 
-test('build query with no filters', function(t) {
+test('build query with filters', function(t) {
   t.plan(1);
   const builder = new QueryBuilder({
     filters: [

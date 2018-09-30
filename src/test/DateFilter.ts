@@ -25,7 +25,7 @@ test('build query with date filter format', function(t) {
 });
 
 
-test('build query with numeric filter for valueToString', function(t) {
+test('build query with date filter for valueToString', function(t) {
   t.plan(1);
   const query = new DateFilter({
     property: "date",

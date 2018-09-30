@@ -13,7 +13,7 @@ test('build query with boolean filter', function(t) {
 });
 
 
-test('build query with numeric filter for valueToString', function(t) {
+test('build query with boolean filter for valueToString', function(t) {
   t.plan(1);
   const query = new BooleanFilter({
     property: 'boolean',
@@ -23,7 +23,7 @@ test('build query with numeric filter for valueToString', function(t) {
   t.same(query, 'true');
 });
 
-test('build query with date filter for every operations', function(t) {
+test('build query with date boolean for every operations', function(t) {
   const operations = Object.keys(BooleanFilterOperation);
   t.plan(operations.length);
   operations.forEach((operation: string) => {

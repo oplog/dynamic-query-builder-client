@@ -12,7 +12,7 @@ test('build query with string filter', function(t) {
   t.same(parser.fromQuery(query), { o: 'Equals', p: 'string', v: 'test' });
 });
 
-test('build query with numeric filter for array', function(t) {
+test('build query with string filter for array', function(t) {
   t.plan(1);
   const query = new StringFilter({
     property: 'string',
@@ -22,7 +22,7 @@ test('build query with numeric filter for array', function(t) {
   t.same(parser.fromQuery(query),  { o: 'Equals', p: 'string', v: 'one,two' });
 });
 
-test('build query with numeric filter for valueToString', function(t) {
+test('build query with string filter for valueToString', function(t) {
   t.plan(1);
   const query = new StringFilter({
     property: 'string',
