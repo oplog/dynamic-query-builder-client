@@ -52,7 +52,7 @@ const builder = new QueryBuilder({
     }),
     sortBy: new SortField({
         property: "name",
-        by: SortDirection.Descending
+        by: SortDirection.DESC
     })
 });
 
