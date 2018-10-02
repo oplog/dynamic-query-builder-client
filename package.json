@@ -4,13 +4,13 @@
   "description": "Typescript client for Dynamic Query Builder",
   "main": "index.js",
   "scripts": {
-    "build": "rimraf ./lib && tsc",
+    "build": "rimraf ./dist && tsc",
     "dev": "nodemon --watch src -e ts --exec 'npm run test'",
     "prepublish": "npm run test && npm run build",
     "pretest": "tsc",
-    "test": "node ./lib/test/index.js",
-    "test:debug": "node --inspect-brk ./lib/test/index.js",
-    "coverage": "rimraf ./istanbul && tsc && istanbul cover lib/test/index.js --report html"
+    "test": "node ./dist/test/index.js",
+    "test:debug": "node --inspect-brk ./dist/test/index.js",
+    "coverage": "rimraf ./istanbul && tsc && istanbul cover dist/test/index.js --report html"
   },
   "repository": {
     "type": "git",
