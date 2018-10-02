@@ -1,6 +1,7 @@
 import * as test from 'tape';
 import * as parser from 'query-string-parser';
-import { NumericFilter, NumericFilterOperation } from '..';
+import { NumericFilter } from '../NumericFilter';
+import { NumericFilterOperation } from '../FilterOperation';
 
 test('build query with numeric filter', function(t) {
   t.plan(1);
@@ -8,7 +9,7 @@ test('build query with numeric filter', function(t) {
     property: 'age',
     value: 25,
   }).build();
-  t.same(parser.fromQuery(query),  { o: 'Equals', p: 'age', v: '25' });
+  t.same(parser.fromQuery(query), { o: 'Equals', p: 'age', v: '25' });
 });
 
 test('build query with numeric filter for array', function(t) {

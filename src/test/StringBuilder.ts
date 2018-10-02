@@ -1,6 +1,7 @@
 import * as test from 'tape';
 import * as parser from 'query-string-parser';
-import { StringFilter, StringFilterOperation } from '..';
+import { StringFilter } from '../StringFilter';
+import { StringFilterOperation } from '../FilterOperation';
 
 test('build query with string filter', function(t) {
   t.plan(1);

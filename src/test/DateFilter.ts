@@ -1,12 +1,13 @@
 import * as test from 'tape';
 import * as parser from 'query-string-parser';
-import * as Moment from "moment";
-import { DateFilter, DateFilterOperation } from '..';
+import * as Moment from 'moment';
+import { DateFilter } from '../DateFilter';
+import { DateFilterOperation } from '../FilterOperation';
 
 test('build query with date filter', function(t) {
   t.plan(1);
   const query = new DateFilter({
-    property: "date",
+    property: 'date',
     op: DateFilterOperation.Equals,
     value: Moment('2018-09-29', 'YYYY-MM-DD'),
   }).build();
@@ -16,7 +17,7 @@ test('build query with date filter', function(t) {
 test('build query with date filter format', function(t) {
   t.plan(1);
   const query = new DateFilter({
-    property: "date",
+    property: 'date',
     op: DateFilterOperation.Equals,
     value: Moment('2018-09-29', 'YYYY-MM-DD'),
     dateFormat: 'DD/MM/YYYY',
@@ -24,18 +25,16 @@ test('build query with date filter format', function(t) {
   t.same(parser.fromQuery(query), { o: 'Equals', p: 'date', v: '29/09/2018' });
 });
 
-
 test('build query with date filter for valueToString', function(t) {
   t.plan(1);
   const query = new DateFilter({
-    property: "date",
+    property: 'date',
     op: DateFilterOperation.Equals,
     value: Moment('2018-09-29', 'YYYY-MM-DD'),
     dateFormat: 'DD/MM/YYYY',
   }).valueToString();
   t.same(query, '29/09/2018');
 });
-
 
 test('build query with date filter for every operations', function(t) {
   const operations = Object.keys(DateFilterOperation);
@@ -46,6 +45,10 @@ test('build query with date filter for every operations', function(t) {
       value: Moment('2018-09-29'),
       op: <DateFilterOperation>operation,
     }).build();
-    t.same(parser.fromQuery(query), { o: operation, p: 'date', v: '2018-09-29' });
+    t.same(parser.fromQuery(query), {
+      o: operation,
+      p: 'date',
+      v: '2018-09-29',
+    });
   });
 });

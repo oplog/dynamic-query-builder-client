@@ -1,6 +1,7 @@
 import * as test from 'tape';
 import * as parser from 'query-string-parser';
-import { BooleanFilter, BooleanFilterOperation } from '..';
+import { BooleanFilter } from '../BooleanFilter';
+import { BooleanFilterOperation } from '../FilterOperation';
 
 test('build query with boolean filter', function(t) {
   t.plan(1);

@@ -1,6 +1,6 @@
 import * as test from 'tape';
 import * as parser from 'query-string-parser';
-import { Pagination } from '..';
+import { Pagination } from '../Pagination';
 
 test('build query with pagination filter', function(t) {
   t.plan(2);

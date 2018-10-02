@@ -13,7 +13,7 @@
     "typeRoots": ["node_modules/@types"],
     "types": ["@types/node"],
     "rootDir": "./src",
-    "outDir": "./lib"
+    "outDir": "./dist"
   },
   "exclude": [
     "node_modules",
