@@ -11,14 +11,14 @@ import {
   Pagination,
 } from '..';
 
-test('build query with no filters', function(t) {
+test('build query with no filters', function (t) {
   t.plan(1);
   const builder = new QueryBuilder({ filters: [] });
   t.equal(builder.build(), '');
 });
 
-test('build query with filters', function(t) {
-  t.plan(1);
+test('build query with filters', function (t) {
+  t.plan(2);
   const builder = new QueryBuilder({
     filters: [
       new NumericFilter({
@@ -36,19 +36,36 @@ test('build query with filters', function(t) {
       offset: 0,
       count: 10,
     }),
-    sortBy: new SortField({
-      property: 'name',
-      by: SortDirection.DESC,
-    }),
+    sortBy: [
+      new SortField({
+        property: 'name',
+        by: SortDirection.DESC,
+      }),
+      new SortField({
+        property: 'age',
+        by: SortDirection.ASC
+      })],
   });
-  const queryParse = parser.fromQuery(builder.build());
-
+  const rawQuery = builder.build().toLowerCase(); // toLower to avoid case sensitivity issues.
+  const queryParse = parser.fromQuery(rawQuery);
   t.same(queryParse, {
-      p: 'name',
-      o: 'StartsWith',
-      v: 'Y',
-      s: 'name,desc',
-      offset: '0',
-      count: '10',
-    });
+    o: 'startswith',
+    p: 'name',
+    v: 'y',
+    s: 'age,asc',
+    offset: '0',
+    count: '10',
+  });
+
+  /**
+   * Apparently, query-string-parser is not able to parse parameters that occur more than once since it converts
+   * the parsed query into an object instead of a kv array but we have to be checking the parameters that occur
+   * more than once as well.
+   */
+
+  t.true(
+    rawQuery.indexOf('o=greaterthan') >= 0
+    && rawQuery.indexOf('p=age') >= 0
+    && rawQuery.indexOf('v=25') >= 0
+    && rawQuery.indexOf('s=name,desc') >= 0);
 });
