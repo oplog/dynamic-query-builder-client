@@ -1,6 +1,6 @@
 # Dynamic Query Builder Client
 
-[![CircleCI](https://circleci.com/gh/emrekeskinmac/dynamic-query-builder-client/tree/feature%2Funit-tests.svg?style=svg)](https://circleci.com/gh/emrekeskinmac/dynamic-query-builder-client/tree/feature%2Funit-tests)
+[![CircleCI](https://circleci.com/gh/oplog/dynamic-query-builder-client.svg?style=svg)](https://circleci.com/gh/oplog/dynamic-query-builder-client)
 
 ![istanbul coverange](https://img.shields.io/badge/code%20coverange-93.04-green.svg)
 
