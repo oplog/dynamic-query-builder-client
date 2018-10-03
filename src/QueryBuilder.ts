@@ -26,8 +26,8 @@ export class QueryBuilder implements Builder, QueryBuilderParams {
     const paginationQuery = this.pagination
       ? this.pagination.build()
       : undefined;
-
     const statements = [filterQueries.join("&")];
+
     if (sortByQuery) {
       statements.push(sortByQuery);
     }
@@ -35,7 +35,6 @@ export class QueryBuilder implements Builder, QueryBuilderParams {
     if (paginationQuery) {
       statements.push(paginationQuery);
     }
-
     return statements.join("&");
   }
 }

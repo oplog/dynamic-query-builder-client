@@ -27,7 +27,7 @@ export class DateFilter extends Filter implements DateFilterParams {
     return buildFilter(
       this.op,
       this.property,
-      this.value.format(DATE_FILTER_FORMAT)
+      this.value.format(this.dateFormat)
     );
   }
 
