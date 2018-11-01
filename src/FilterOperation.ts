@@ -36,3 +36,12 @@ export enum BooleanFilterOperation {
   Equals = "Equals",
   NotEqual = "NotEqual"
 }
+
+export enum DecimalFilterOperation {
+  Equals = "Equals",
+  NotEqual = "NotEqual",
+  LessThan = "LessThan",
+  LessThanOrEqual = "LessThanOrEqual",
+  GreaterThan = "GreaterThan",
+  GreaterThanOrEqual = "GreaterThanOrEqual"
+}

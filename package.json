@@ -1,8 +1,8 @@
 {
   "name": "dynamic-query-builder-client",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Typescript client for Dynamic Query Builder",
-  "main": "index.js",
+  "main": "dist/index",
   "scripts": {
     "build": "rimraf ./dist && tsc",
     "dev": "nodemon --watch src -e ts --exec 'npm run test'",
@@ -12,6 +12,8 @@
     "test:debug": "node --inspect-brk ./dist/test/index.js",
     "coverage": "rimraf ./istanbul && tsc && istanbul cover dist/test/index.js --report html"
   },
+  "typings": "dist/index",
+  "types": "dist/index",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/oplog/dynamic-query-builder-client.git"
@@ -31,8 +33,7 @@
     "query-string-parser": "^0.2.1",
     "rimraf": "^2.6.2",
     "tape": "^4.9.1",
-    "tsc": "^1.20150623.0",
-    "typescript": "^2.9.2"
+    "typescript": "^3.1.4"
   },
   "dependencies": {
     "moment": "^2.22.2"
