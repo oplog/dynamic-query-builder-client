@@ -32,7 +32,7 @@ module.exports = {
     output: {
         filename: 'index.js',
         path: path.resolve(__dirname, 'dist'),
-        library: '@oplog/dynamic-query-builder-client',
+        library: 'dynamic-query-builder-client',
         libraryTarget: 'umd'
     },
     externals: {
