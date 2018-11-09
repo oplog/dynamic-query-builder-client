@@ -4,7 +4,9 @@
   "description": "Typescript client for Dynamic Query Builder",
   "main": "dist/index",
   "scripts": {
-    "build": "rimraf ./dist && tsc",
+    "prebuild": "rimraf ./dist",
+    "build:dev": "tsc",
+    "build": "webpack --config webpack.config.js --mode production",
     "dev": "nodemon --watch src -e ts --exec 'npm run test'",
     "prepublish": "npm run test && npm run build",
     "pretest": "tsc",
@@ -27,15 +29,24 @@
   "devDependencies": {
     "@types/node": "^10.11.3",
     "@types/tape": "^4.2.32",
+    "clean-webpack-plugin": "^0.1.19",
     "istanbul": "^0.4.5",
     "ncp": "^2.0.0",
     "nodemon": "^1.18.2",
     "query-string-parser": "^0.2.1",
     "rimraf": "^2.6.2",
     "tape": "^4.9.1",
-    "typescript": "^3.1.4"
+    "ts-loader": "^5.3.0",
+    "tslint": "^5.11.0",
+    "tslint-loader": "^3.5.4",
+    "typescript": "^3.1.4",
+    "webpack": "^4.25.1",
+    "webpack-cli": "^3.1.2"
   },
   "dependencies": {
+    "moment": "^2.22.2"
+  },
+  "peerDependencies": {
     "moment": "^2.22.2"
   }
 }
