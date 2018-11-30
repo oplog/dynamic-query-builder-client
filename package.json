@@ -1,6 +1,6 @@
 {
   "name": "dynamic-query-builder-client",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Typescript client for Dynamic Query Builder",
   "main": "dist/index",
   "scripts": {
