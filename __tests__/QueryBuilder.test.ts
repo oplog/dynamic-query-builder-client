@@ -1,4 +1,3 @@
-// import * as test from 'tape';
 import * as parser from "query-string-parser";
 import {
   NumericFilter,
