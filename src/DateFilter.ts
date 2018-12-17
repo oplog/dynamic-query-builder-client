@@ -1,7 +1,7 @@
 import { Moment } from "moment";
-import { DateFilterOperation } from "./FilterOperation";
-import { FilterParams, Filter } from "./Filter";
 import { buildFilter } from "./Builder";
+import { Filter, FilterParams } from "./Filter";
+import { DateFilterOperation } from "./FilterOperation";
 
 export const DATE_FILTER_FORMAT = "YYYY-MM-DD";
 
@@ -12,9 +12,9 @@ export interface DateFilterParams extends FilterParams {
 }
 
 export class DateFilter extends Filter implements DateFilterParams {
-  op: DateFilterOperation;
-  value: Moment;
-  dateFormat: string;
+  public op: DateFilterOperation;
+  public value: Moment;
+  public dateFormat: string;
 
   constructor(params: DateFilterParams) {
     super(params);
@@ -23,15 +23,15 @@ export class DateFilter extends Filter implements DateFilterParams {
     this.dateFormat = params.dateFormat || DATE_FILTER_FORMAT;
   }
 
-  build(): string {
+  public build(): string {
     return buildFilter(
       this.op,
       this.property,
-      this.value.utc().format(this.dateFormat)
+      this.value.utc().format(this.dateFormat),
     );
   }
 
-  valueToString(): string {
+  public valueToString(): string {
     return this.value.format(this.dateFormat);
   }
 }

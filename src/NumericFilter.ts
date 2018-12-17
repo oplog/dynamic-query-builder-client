@@ -1,15 +1,15 @@
-import { FilterParams, Filter } from "./Filter";
-import { NumericFilterOperation } from "./FilterOperation";
 import { buildFilter } from "./Builder";
+import { Filter, FilterParams } from "./Filter";
+import { NumericFilterOperation } from "./FilterOperation";
 
 export interface NumericFilterParams extends FilterParams {
   op?: NumericFilterOperation;
-  value: number | Array<number>;
+  value: number | number[];
 }
 
 export class NumericFilter extends Filter implements NumericFilterParams {
-  value: number | Array<number>;
-  op: NumericFilterOperation;
+  public value: number | number[];
+  public op: NumericFilterOperation;
 
   constructor(params: NumericFilterParams) {
     super(params);
@@ -17,16 +17,16 @@ export class NumericFilter extends Filter implements NumericFilterParams {
     this.op = params.op || NumericFilterOperation.Equals;
   }
 
-  build(): string {
+  public build(): string {
     if (typeof this.value === "number") {
       return buildFilter(this.op, this.property, `${this.value}`);
     }
 
-    let values: string = (this.value as Array<number>).join(",");
+    const values: string = (this.value as number[]).join(",");
     return buildFilter(this.op, this.property, values);
   }
 
-  valueToString(): string {
+  public valueToString(): string {
     if (typeof this.value === "number") {
       return `${this.value}`;
     }

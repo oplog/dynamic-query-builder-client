@@ -11,7 +11,7 @@ export enum NumericFilterOperation {
   LessThan = "LessThan",
   LessThanOrEqual = "LessThanOrEqual",
   GreaterThan = "GreaterThan",
-  GreaterThanOrEqual = "GreaterThanOrEqual"
+  GreaterThanOrEqual = "GreaterThanOrEqual",
 }
 
 export enum StringFilterOperation {
@@ -20,7 +20,7 @@ export enum StringFilterOperation {
   Contains = "Contains",
   NotEqual = "NotEqual",
   EndsWith = "EndsWith",
-  StartsWith = "StartsWith"
+  StartsWith = "StartsWith",
 }
 
 export enum DateFilterOperation {
@@ -29,12 +29,12 @@ export enum DateFilterOperation {
   GreaterThan = "GreaterThan",
   GreaterThanOrEqual = "GreaterThanOrEqual",
   LessThan = "LessThan",
-  LessThanOrEqual = "LessThanOrEqual"
+  LessThanOrEqual = "LessThanOrEqual",
 }
 
 export enum BooleanFilterOperation {
   Equals = "Equals",
-  NotEqual = "NotEqual"
+  NotEqual = "NotEqual",
 }
 
 export enum DecimalFilterOperation {
@@ -43,5 +43,5 @@ export enum DecimalFilterOperation {
   LessThan = "LessThan",
   LessThanOrEqual = "LessThanOrEqual",
   GreaterThan = "GreaterThan",
-  GreaterThanOrEqual = "GreaterThanOrEqual"
+  GreaterThanOrEqual = "GreaterThanOrEqual",
 }

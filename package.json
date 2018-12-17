@@ -1,18 +1,16 @@
 {
   "name": "dynamic-query-builder-client",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Typescript client for Dynamic Query Builder",
   "main": "dist/index",
   "scripts": {
     "prebuild": "rimraf ./dist",
-    "build:dev": "tsc",
     "build": "webpack --config webpack.config.js --mode production",
-    "dev": "nodemon --watch src -e ts --exec 'npm run test'",
-    "prepublish": "npm run test && npm run build",
-    "pretest": "tsc",
-    "test": "node ./dist/test/index.js",
-    "test:debug": "node --inspect-brk ./dist/test/index.js",
-    "coverage": "rimraf ./istanbul && tsc && istanbul cover dist/test/index.js --report html"
+    "build:dev": "webpack --config webpack.config.js --mode development -p --progress",
+    "watch": "npm run build:dev -- --watch",
+    "test": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "prepublish": "npm run build"
   },
   "typings": "dist/index",
   "types": "dist/index",
@@ -27,26 +25,50 @@
   },
   "homepage": "https://github.com/oplog/dynamic-query-builder-client#readme",
   "devDependencies": {
+    "@types/jest": "^23.3.5",
     "@types/node": "^10.11.3",
-    "@types/tape": "^4.2.32",
-    "clean-webpack-plugin": "^0.1.19",
-    "istanbul": "^0.4.5",
-    "ncp": "^2.0.0",
-    "nodemon": "^1.18.2",
-    "query-string-parser": "^0.2.1",
+    "jest": "^23.6.0",
     "rimraf": "^2.6.2",
-    "tape": "^4.9.1",
-    "ts-loader": "^5.3.0",
+    "source-map-loader": "^0.2.4",
+    "ts-jest": "^23.10.4",
+    "ts-loader": "^5.2.1",
+    "ts-node": "^7.0.1",
     "tslint": "^5.11.0",
     "tslint-loader": "^3.5.4",
     "typescript": "^3.1.4",
-    "webpack": "^4.25.1",
-    "webpack-cli": "^3.1.2"
+    "webpack": "^4.20.2",
+    "webpack-cli": "^3.1.2",
+    "query-string-parser": "^0.2.1"
   },
   "dependencies": {
     "moment": "^2.22.2"
   },
   "peerDependencies": {
     "moment": "^2.22.2"
+  },
+  "jest": {
+    "roots": [
+      "<rootDir>"
+    ],
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest"
+    },
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.tsx?$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json",
+      "node"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 90,
+        "functions": 95,
+        "lines": 95,
+        "statements": 99
+      }
+    }
   }
 }
