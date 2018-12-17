@@ -1,6 +1,6 @@
-import { FilterParams, Filter } from "./Filter";
-import { BooleanFilterOperation } from "./FilterOperation";
 import { buildFilter } from "./Builder";
+import { Filter, FilterParams } from "./Filter";
+import { BooleanFilterOperation } from "./FilterOperation";
 
 export interface BooleanFilterParams extends FilterParams {
   op: BooleanFilterOperation;
@@ -8,8 +8,8 @@ export interface BooleanFilterParams extends FilterParams {
 }
 
 export class BooleanFilter extends Filter implements BooleanFilterParams {
-  op: BooleanFilterOperation;
-  value: boolean;
+  public op: BooleanFilterOperation;
+  public value: boolean;
 
   constructor(params: BooleanFilterParams) {
     super(params);
@@ -17,11 +17,11 @@ export class BooleanFilter extends Filter implements BooleanFilterParams {
     this.value = params.value;
   }
 
-  build(): string {
+  public build(): string {
     return buildFilter(this.op, this.property, `${this.value}`);
   }
 
-  valueToString(): string {
+  public valueToString(): string {
     return `${this.value}`;
   }
 }

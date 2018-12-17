@@ -7,11 +7,11 @@ export interface Builder {
 export function buildFilter(
   op: FilterOperation,
   property: string,
-  value: string
+  value: string,
 ): string {
-  let o = `o=${op}`;
-  let p = `p=${property}`;
-  let v = `v=${value}`;
+  const o = `o=${op}`;
+  const p = `p=${property}`;
+  const v = `v=${value}`;
 
   return [o, p, v].join("&");
 }

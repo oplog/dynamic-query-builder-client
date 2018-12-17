@@ -1,15 +1,15 @@
-import { StringFilterOperation } from "./FilterOperation";
-import { Filter, FilterParams } from "./Filter";
 import { buildFilter } from "./Builder";
+import { Filter, FilterParams } from "./Filter";
+import { StringFilterOperation } from "./FilterOperation";
 
 export interface StringFilterParams extends FilterParams {
   op: StringFilterOperation;
-  value: string | Array<string>;
+  value: string | string[];
 }
 
 export class StringFilter extends Filter implements StringFilterParams {
-  op: StringFilterOperation;
-  value: string | string[];
+  public op: StringFilterOperation;
+  public value: string | string[];
 
   constructor(params: StringFilterParams) {
     super(params);
@@ -17,16 +17,16 @@ export class StringFilter extends Filter implements StringFilterParams {
     this.value = params.value;
   }
 
-  build(): string {
+  public build(): string {
     if (typeof this.value === "string") {
       return buildFilter(this.op, this.property, `${this.value}`);
     }
 
-    let values: string = (this.value as Array<string>).join(",");
+    const values: string = (this.value as string[]).join(",");
     return buildFilter(this.op, this.property, values);
   }
 
-  valueToString(): string {
+  public valueToString(): string {
     if (typeof this.value === "string") {
       return this.value;
     }

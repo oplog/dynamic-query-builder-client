@@ -7,8 +7,8 @@ export interface FilterParams {
 }
 
 export abstract class Filter implements FilterParams, Builder {
-  id: string;
-  property: string;
+  public id: string;
+  public property: string;
 
   constructor(params: FilterParams) {
     this.property = params.property;
@@ -16,6 +16,6 @@ export abstract class Filter implements FilterParams, Builder {
   }
 
   abstract get op(): FilterOperation;
-  abstract build(): string;
-  abstract valueToString(): string;
+  public abstract build(): string;
+  public abstract valueToString(): string;
 }
