@@ -8,7 +8,7 @@
     "build": "webpack --config webpack.config.js --mode production",
     "build:dev": "webpack --config webpack.config.js --mode development -p --progress",
     "watch": "npm run build:dev -- --watch",
-    "test": "jest --watch=all",
+    "test": "jest --watch",
     "test:coverage": "jest --coverage",
     "prepublish": "npm run build"
   },
@@ -18,8 +18,8 @@
     "type": "git",
     "url": "git+https://github.com/oplog/dynamic-query-builder-client.git"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "OPLOG Development Team <info@oplog.com.tr”> (https://oplog.com.tr)",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/oplog/dynamic-query-builder-client/issues"
   },
