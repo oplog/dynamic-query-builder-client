@@ -8,7 +8,7 @@ describe("SortFilter", () => {
       property: "sort",
       by: SortDirection.NONE,
     });
-    expect(parser.fromQuery(query.build())).toEqual(undefined);
+    expect(parser.fromQuery(query.build())).toEqual({});
   });
 
   it("should build query with sorting filter for every operations", () => {
