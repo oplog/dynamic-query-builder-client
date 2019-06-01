@@ -18,8 +18,8 @@
     "type": "git",
     "url": "git+https://github.com/oplog/dynamic-query-builder-client.git"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "OPLOG Development Team <info@oplog.com.tr”> (https://oplog.com.tr)",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/oplog/dynamic-query-builder-client/issues"
   },
