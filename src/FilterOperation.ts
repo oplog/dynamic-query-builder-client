@@ -2,7 +2,8 @@ export type FilterOperation =
   | NumericFilterOperation
   | StringFilterOperation
   | DateFilterOperation
-  | BooleanFilterOperation;
+  | BooleanFilterOperation
+  | ArrayFilterOperation;
 
 export enum NumericFilterOperation {
   In = "In",
@@ -44,4 +45,10 @@ export enum DecimalFilterOperation {
   LessThanOrEqual = "LessThanOrEqual",
   GreaterThan = "GreaterThan",
   GreaterThanOrEqual = "GreaterThanOrEqual",
+}
+
+export enum ArrayFilterOperation {
+  Any = "Any",
+  In = "In",
+  Equals = "Equals",
 }
