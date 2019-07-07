@@ -8,3 +8,4 @@ export * from "./BooleanFilter";
 export * from "./NumericFilter";
 export * from "./StringFilter";
 export * from "./DateFilter";
+export * from "./ArrayFilter";
