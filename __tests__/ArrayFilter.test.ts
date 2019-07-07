@@ -4,7 +4,7 @@ import { ArrayFilterOperation } from "../src/FilterOperation";
 // Url Parser is not working in this situation
 // it cannot be able to parse "o=Any&p=Tests&v=(o=contains&p=Name&v=1,2,3,4,5,6)"
 // values are overriding each other on parsing phase
-describe("BooleanFilter", () => {
+describe("Array Filter", () => {
   it("build query with array filter", () => {
     const query = new ArrayFilter({
       property: "array",
