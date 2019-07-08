@@ -49,6 +49,5 @@ export enum DecimalFilterOperation {
 
 export enum ArrayFilterOperation {
   Any = "Any",
-  In = "In",
-  Equals = "Equals",
+  All = "All",
 }
