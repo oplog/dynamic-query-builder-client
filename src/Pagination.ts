@@ -24,6 +24,6 @@ export class Pagination implements Builder, PaginationParams {
   }
 
   get currentPage(): number {
-    return this.offset / this.count + 1;
+    return Math.floor(this.offset / this.count + 1);
   }
 }
