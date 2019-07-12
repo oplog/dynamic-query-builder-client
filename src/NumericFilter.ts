@@ -4,11 +4,11 @@ import { NumericFilterOperation } from "./FilterOperation";
 
 export interface NumericFilterParams extends FilterParams {
   op?: NumericFilterOperation;
-  value: number | number[];
+  value: number | number[] | "null";
 }
 
 export class NumericFilter extends Filter implements NumericFilterParams {
-  public value: number | number[];
+  public value: number | number[] | "null";
   public op: NumericFilterOperation;
 
   constructor(params: NumericFilterParams) {
@@ -18,6 +18,9 @@ export class NumericFilter extends Filter implements NumericFilterParams {
   }
 
   public build(): string {
+    if (this.value === "null") {
+      return buildFilter(this.op, this.property, this.value);
+    }
     if (typeof this.value === "number") {
       return buildFilter(this.op, this.property, `${this.value}`);
     }
@@ -27,6 +30,10 @@ export class NumericFilter extends Filter implements NumericFilterParams {
   }
 
   public valueToString(): string {
+    if (this.value === "null") {
+      return this.value;
+    }
+
     if (typeof this.value === "number") {
       return `${this.value}`;
     }
