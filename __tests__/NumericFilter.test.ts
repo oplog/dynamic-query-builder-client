@@ -61,4 +61,25 @@ describe("NumericFilter", () => {
       });
     });
   });
+
+  it("should value be null", () => {
+    const query = new NumericFilter({
+      property: "age",
+      value: "null",
+    }).valueToString();
+    expect(query).toEqual("null");
+  });
+
+  it("should build null query", () => {
+    const query = new NumericFilter({
+      property: "age",
+      value: "null",
+      op: "Equals" as NumericFilterOperation,
+    }).build();
+    const o = `o=Equals`;
+    const p = `p=age`;
+    const v = `v=null`;
+    expect(query).toEqual([o, p, v].join("&"));
+  });
+
 });
