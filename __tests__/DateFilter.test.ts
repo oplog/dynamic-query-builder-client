@@ -19,6 +19,20 @@ describe("DateFilter", () => {
     });
   });
 
+  it("should build query with null filter", () => {
+    const query = new DateFilter({
+      property: "date",
+      op: DateFilterOperation.Equals,
+      value: "null",
+    }).build();
+
+    expect(parser.fromQuery(query)).toEqual({
+      o: "Equals",
+      p: "date",
+      v: "null",
+    });
+  });
+
   it("should build query with date filter format", () => {
     const query = new DateFilter({
       property: "date",
