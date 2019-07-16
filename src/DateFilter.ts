@@ -7,13 +7,13 @@ export const DATE_FILTER_FORMAT = "YYYY-MM-DD";
 
 export interface DateFilterParams extends FilterParams {
   op: DateFilterOperation;
-  value: Moment;
+  value: Moment | "null";
   dateFormat?: string;
 }
 
 export class DateFilter extends Filter implements DateFilterParams {
   public op: DateFilterOperation;
-  public value: Moment;
+  public value: Moment | "null";
   public dateFormat: string;
 
   constructor(params: DateFilterParams) {
@@ -27,11 +27,11 @@ export class DateFilter extends Filter implements DateFilterParams {
     return buildFilter(
       this.op,
       this.property,
-      this.value.utc().format(this.dateFormat),
+      this.value === "null" ? "null" : this.value.utc().format(this.dateFormat),
     );
   }
 
   public valueToString(): string {
-    return this.value.format(this.dateFormat);
+    return this.value === "null" ? "null" : this.value.format(this.dateFormat);
   }
 }
