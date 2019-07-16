@@ -32,6 +32,6 @@ export class DateFilter extends Filter implements DateFilterParams {
   }
 
   public valueToString(): string {
-    return this.value === "null" ? "null" :this.value.format(this.dateFormat);
+    return this.value === "null" ? "null" : this.value.format(this.dateFormat);
   }
 }
