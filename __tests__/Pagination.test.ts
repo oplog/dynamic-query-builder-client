@@ -1,5 +1,5 @@
 import * as parser from "query-string-parser";
-import { Pagination, DEFAULT_PAGINATION_COUNT } from "../src/Pagination";
+import { DEFAULT_PAGINATION_COUNT, Pagination } from "../src/Pagination";
 
 describe("Pagination", () => {
   it("build query with pagination filter", () => {
@@ -14,7 +14,7 @@ describe("Pagination", () => {
   });
 
   it("should use default pagination count", () => {
-    let count = new Pagination({
+    const count = new Pagination({
       offset: 0,
     }).count;
 

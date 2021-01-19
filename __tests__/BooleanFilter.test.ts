@@ -1,6 +1,9 @@
 import * as parser from "query-string-parser";
 import { BooleanFilter } from "../src/BooleanFilter";
-import { BooleanFilterOperation } from "../src/FilterOperation";
+import {
+  BooleanFilterOperation,
+  LogicalOperator,
+} from "../src/FilterOperation";
 
 describe("BooleanFilter", () => {
   it("build query with boolean filter", () => {
@@ -15,6 +18,17 @@ describe("BooleanFilter", () => {
       p: "boolean",
       v: "true",
     });
+  });
+
+  it("build query with logicalOperator", () => {
+    const query = new BooleanFilter({
+      property: "boolean",
+      op: BooleanFilterOperation.Equals,
+      value: true,
+      logicalOperator: LogicalOperator.OrElse,
+    }).build();
+
+    expect(query).toEqual("o=Equals|OrElse&p=boolean&v=true");
   });
 
   it("should build query with boolean filter for valueToString", () => {

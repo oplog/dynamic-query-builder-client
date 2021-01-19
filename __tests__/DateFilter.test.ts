@@ -1,10 +1,9 @@
 import * as moment from "moment";
 import * as parser from "query-string-parser";
 import { DateFilter } from "../src/DateFilter";
-import { DateFilterOperation } from "../src/FilterOperation";
+import { DateFilterOperation, LogicalOperator } from "../src/FilterOperation";
 
 describe("DateFilter", () => {
-
   it("should build query with date filter", () => {
     const query = new DateFilter({
       property: "date",
@@ -17,6 +16,17 @@ describe("DateFilter", () => {
       p: "date",
       v: "2018-09-29",
     });
+  });
+
+  it("build query with logicalOperator", () => {
+    const query = new DateFilter({
+      property: "date",
+      op: DateFilterOperation.Equals,
+      value: moment.utc("2018-09-29", "YYYY-MM-DD"),
+      logicalOperator: LogicalOperator.OrElse,
+    }).build();
+
+    expect(query).toEqual("o=Equals|OrElse&p=date&v=2018-09-29");
   });
 
   it("should build query with null filter", () => {

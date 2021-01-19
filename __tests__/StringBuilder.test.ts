@@ -1,9 +1,8 @@
 import * as parser from "query-string-parser";
-import { StringFilterOperation } from "../src/FilterOperation";
+import { LogicalOperator, StringFilterOperation } from "../src/FilterOperation";
 import { StringFilter } from "../src/StringFilter";
 
 describe("StringBuilder", () => {
-
   it("should build query with string filter", () => {
     const query = new StringFilter({
       property: "string",
@@ -13,6 +12,21 @@ describe("StringBuilder", () => {
 
     expect(parser.fromQuery(query)).toEqual({
       o: "Equals",
+      p: "string",
+      v: "test",
+    });
+  });
+
+  it("should build query with logicalOperator", () => {
+    const query = new StringFilter({
+      property: "string",
+      op: StringFilterOperation.Equals,
+      value: "test",
+      logicalOperator: LogicalOperator.OrElse,
+    }).build();
+
+    expect(parser.fromQuery(query)).toEqual({
+      o: "Equals|OrElse",
       p: "string",
       v: "test",
     });
@@ -30,7 +44,6 @@ describe("StringBuilder", () => {
       p: "string",
       v: "one,two",
     });
-
   });
   it("should build query with string filter for valueToString", () => {
     const query = new StringFilter({

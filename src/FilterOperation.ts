@@ -3,7 +3,8 @@ export type FilterOperation =
   | StringFilterOperation
   | DateFilterOperation
   | BooleanFilterOperation
-  | ArrayFilterOperation;
+  | ArrayFilterOperation
+  | LogicalOperator;
 
 export enum NumericFilterOperation {
   In = "In",
@@ -13,6 +14,15 @@ export enum NumericFilterOperation {
   LessThanOrEqual = "LessThanOrEqual",
   GreaterThan = "GreaterThan",
   GreaterThanOrEqual = "GreaterThanOrEqual",
+}
+
+export enum LogicalOperator {
+  None = "None",
+  AndAlso = "AndAlso",
+  OrElse = "OrElse",
+  And = "And",
+  Or = "Or",
+  Xor = "Xor",
 }
 
 export enum StringFilterOperation {
