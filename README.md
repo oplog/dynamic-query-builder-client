@@ -10,6 +10,7 @@ Dynamic query builder is able to build http query string for `filtering`, `sorti
 #### NOTE: To perform http requests with query string, the builded query must be url encoded
 
 ## Getting Started
+
 All query building operations are done by `QueryBuilder` class. To create a new instance. Here's the constructor parameters;
 
 ```ts
@@ -21,43 +22,44 @@ export interface QueryBuilderParams {
 ```
 
 A full example would be the following;
-```ts
-import {
-    QueryBuilder,
 
-} from "@dynamic-query-builder";
+```ts
+import { QueryBuilder } from "@dynamic-query-builder";
 
 export interface User {
-    name: string;
-    age: number;
+  name: string;
+  age: number;
 }
 
 const builder = new QueryBuilder({
-    filters: [
-      new NumericFilter({
-        property: "age",
-        value: 25,
-        op: NumericFilterOperation.GreaterThan
-      }),
-      new StringFilter({
-        property: "name",
-        value: "Y",
-        op: StringFilterOperation.StartsWith
-      })
-    ],
-    pagination: new Pagination({
-        offset: 0,
-        count: 10
+  filters: [
+    new NumericFilter({
+      property: "age",
+      value: 25,
+      op: NumericFilterOperation.GreaterThan,
+      logicalOperator: LogicalOperator.OrElse,
     }),
-    sortBy: [new SortField({
-        property: "name",
-        by: SortDirection.DESC
-    })]
+    new StringFilter({
+      property: "name",
+      value: "Y",
+      op: StringFilterOperation.StartsWith,
+    }),
+  ],
+  pagination: new Pagination({
+    offset: 0,
+    count: 10,
+  }),
+  sortBy: [
+    new SortField({
+      property: "name",
+      by: SortDirection.DESC,
+    }),
+  ],
 });
 
 const query = builder.build();
 // Query will hold the following string
-// o=GreaterThan&p=age&v=25&o=StartsWith&p=name&v=Y&offset=0&count=10&s=name,desc
+// o=GreaterThan|OrElse&p=age&v=25&o=StartsWith&p=name&v=Y&offset=0&count=10&s=name,desc
 
 // Give me 10 users sorted by name descending from offset 0
 // whose age is greater than 25 AND
@@ -65,10 +67,15 @@ const query = builder.build();
 ```
 
 ## Filters
+
 The possible filters in dynamic query builder is the following;
+
 ### StringFilter
+
 String Filter is able to make string filtering;
+
 #### Possible Operations
+
 ```ts
 export enum StringFilterOperation {
   In = "In",
@@ -76,20 +83,23 @@ export enum StringFilterOperation {
   Contains = "Contains",
   NotEqual = "NotEqual",
   EndsWith = "EndsWith",
-  StartsWith = "StartsWith"
+  StartsWith = "StartsWith",
 }
 
 // example
 const filter = new StringFilter({
-    property: "name",
-    op: StringFilterOperation.StartsWith,
-    value: "s"
+  property: "name",
+  op: StringFilterOperation.StartsWith,
+  value: "s",
 });
 ```
 
 ### Numeric Filter
+
 Numeric Filter is able to make numeric filtering;
+
 #### Possible Operations
+
 ```ts
 export enum NumericFilterOperation {
   In = "In",
@@ -98,38 +108,43 @@ export enum NumericFilterOperation {
   LessThan = "LessThan",
   LessThanOrEqual = "LessThanOrEqual",
   GreaterThan = "GreaterThan",
-  GreaterThanOrEqual = "GreaterThanOrEqual"
+  GreaterThanOrEqual = "GreaterThanOrEqual",
 }
 
 // example
 const filter = new NumericFilter({
-    property: "age",
-    op: NumericFilterOperation.GreaterThan,
-    value: 25
-})
+  property: "age",
+  op: NumericFilterOperation.GreaterThan,
+  value: 25,
+});
 ```
 
-
 ### Boolean Filter
+
 Boolean Filter is able to make boolean/option filtering;
+
 #### Possible Operations
+
 ```ts
 export enum BooleanFilterOperation {
   Equals = "Equals",
-  NotEqual = "NotEqual"
+  NotEqual = "NotEqual",
 }
 
 // example
 const filter = new BooleanFilter({
-    property: "isPremium",
-    op: BooleanFilterOperation.Equals,
-    value: true
-})
+  property: "isPremium",
+  op: BooleanFilterOperation.Equals,
+  value: true,
+});
 ```
 
 ### Date Filter
+
 Date Filter is able to make date filtering;
+
 #### Possible Operations
+
 ```ts
 export enum DateFilterOperation {
   Equals = "Equals",
@@ -137,39 +152,43 @@ export enum DateFilterOperation {
   GreaterThan = "GreaterThan",
   GreaterThanOrEqual = "GreaterThanOrEqual",
   LessThan = "LessThan",
-  LessThanOrEqual = "LessThanOrEqual"
+  LessThanOrEqual = "LessThanOrEqual",
 }
 
 // example
 const filter = new DateFilter({
-    property: "birthDate",
-    op: DateFilterOperation.GreaterThan,
-    value: moment("12/25/1995", "MM-DD-YYYY")
-})
+  property: "birthDate",
+  op: DateFilterOperation.GreaterThan,
+  value: moment("12/25/1995", "MM-DD-YYYY"),
+});
 
 // NOTE: Moment library is required for dynamic query builder
 ```
 
 ## Sorting
+
 Sorting can be done by creating `SortField` instance;
 
 ```ts
 const field = new SortField({
-    property: "age",
-    by: SortDirection.DESC
+  property: "age",
+  by: SortDirection.DESC,
 });
 // The default by parameter is Ascending
 ```
 
 ## Pagination
+
 Pagination can be done by creating `Pagination` instance;
+
 ```ts
 const pagination = new Pagination({
-    offset: 10, // default value is 0
-    count: 25 // default value is 25
-})
+  offset: 10, // default value is 0
+  count: 25, // default value is 25
+});
 ```
 
 ## Best Practices
+
 - Always use `QueryBuilder` instance `build()` function for building query string.
 - Do not use `filter.build()`, `sortfield.build()` or `pagination.build()` separately
