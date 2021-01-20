@@ -1,5 +1,6 @@
 import * as parser from "query-string-parser";
 import {
+  LogicalOperator,
   NumericFilter,
   NumericFilterOperation,
   Pagination,
@@ -24,6 +25,7 @@ describe("QueryBuilder", () => {
           property: "age",
           value: 25,
           op: NumericFilterOperation.GreaterThan,
+          logicalOperator: LogicalOperator.OrElse,
         }),
         new StringFilter({
           property: "name",
@@ -43,7 +45,8 @@ describe("QueryBuilder", () => {
         new SortField({
           property: "age",
           by: SortDirection.ASC,
-        })],
+        }),
+      ],
     });
     const rawQuery = builder.build().toLowerCase(); // toLower to avoid case sensitivity issues.
     const queryParse = parser.fromQuery(rawQuery);
@@ -57,7 +60,7 @@ describe("QueryBuilder", () => {
       count: "10",
     });
 
-    expect(rawQuery).toContain("o=greaterthan");
+    expect(rawQuery).toContain("o=greaterthan|orelse");
     expect(rawQuery).toContain("p=age");
     expect(rawQuery).toContain("v=25");
     expect(rawQuery).toContain("s=name,desc");

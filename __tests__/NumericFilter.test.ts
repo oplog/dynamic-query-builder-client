@@ -1,5 +1,8 @@
 import * as parser from "query-string-parser";
-import { NumericFilterOperation } from "../src/FilterOperation";
+import {
+  LogicalOperator,
+  NumericFilterOperation,
+} from "../src/FilterOperation";
 import { NumericFilter } from "../src/NumericFilter";
 
 describe("NumericFilter", () => {
@@ -11,6 +14,20 @@ describe("NumericFilter", () => {
 
     expect(parser.fromQuery(query)).toEqual({
       o: "Equals",
+      p: "age",
+      v: "25",
+    });
+  });
+
+  it("build query with logicalOperator", () => {
+    const query = new NumericFilter({
+      property: "age",
+      value: 25,
+      logicalOperator: LogicalOperator.OrElse,
+    }).build();
+
+    expect(parser.fromQuery(query)).toEqual({
+      o: "Equals|OrElse",
       p: "age",
       v: "25",
     });
@@ -81,5 +98,4 @@ describe("NumericFilter", () => {
     const v = `v=null`;
     expect(query).toEqual([o, p, v].join("&"));
   });
-
 });
